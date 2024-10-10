@@ -1,6 +1,6 @@
-<form id="new-ticket">
+<form id="new-ticket" (onSubmit)="onSubmit(titleInput)">
   <app-control label="Title">
-    <input type="text" id="title" name="title" />
+    <input type="text" id="title" name="title" #titleInput />
   </app-control>
   <app-control label="Request">
     <textarea id="reqeust" name="request" rows="3"></textarea>
