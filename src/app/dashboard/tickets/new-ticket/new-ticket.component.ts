@@ -5,10 +5,13 @@ import {
   ElementRef,
   OnInit,
   AfterViewInit,
+  output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { ButtonComponent } from '../../../shared/button/button.component';
+
+import { TicketData } from '../ticket.model';
 
 @Component({
   selector: 'app-new-ticket',
@@ -19,7 +22,7 @@ import { ButtonComponent } from '../../../shared/button/button.component';
 })
 export class NewTicketComponent implements OnInit, AfterViewInit {
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
-  // private form = viewChild<ElementRef<HTMLFormElement>>('form');
+  add = output<TicketData>();
 
   ngOnInit(): void {
     console.log(this.form?.nativeElement);
@@ -30,7 +33,7 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(title: string, textInput: string) {
-    console.log({ title, textInput });
+    this.add.emit({ title: title, text: textInput });
 
     this.form?.nativeElement.reset();
   }
